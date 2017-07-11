@@ -1,0 +1,44 @@
+﻿<Page
+    x:Name="MyPage"
+    x:Class="Playground.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Playground"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:localControls="using:Playground.Controls"
+    mc:Ignorable="d">
+    
+    <Grid Background="FloralWhite">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <!-- PageHeader is not displayed in XAML Designer -->
+        <localControls:PageHeader x:Name="PageHeader" Background="IndianRed" Foreground="White" FontSize="18">
+            
+            <localControls:PageHeader.LeftContent>
+                <Button Background="Transparent" Foreground="{x:Bind PageHeader.Foreground, Mode=OneWay}">
+                    <SymbolIcon Symbol="Previous" Width="56" Height="56" />
+                </Button>
+            </localControls:PageHeader.LeftContent>
+            
+            Page's title
+            
+            <localControls:PageHeader.RightContent>
+                <Button Background="Transparent" Foreground="{x:Bind PageHeader.Foreground, Mode=OneWay}">
+                    <SymbolIcon Symbol="Next" Width="56" Height="56" />
+                </Button>
+            </localControls:PageHeader.RightContent>
+            
+        </localControls:PageHeader>
+
+        <!-- XAML Designer displays Button with no CornerRadius -->
+        <localControls:RoundButton Height="32" Width="100" Content="Button" Foreground="White" CornerRadius="5" Grid.Row="1" HorizontalAlignment="Center" Background="IndianRed" />
+
+    </Grid>
+</Page>
+

@@ -1,0 +1,16 @@
+﻿<UserControl
+    x:Class="Playground.Templates.BaseTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Playground.Templates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <StackPanel VerticalAlignment="Top">
+        <TextBlock FontSize="15" Foreground="Black" Text="{x:Bind Data.Name}" />
+        <TextBlock FontSize="10" Foreground="Gray" Text="{x:Bind Data.Id}" Margin="5" />
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,86 @@
+﻿<UserControl
+    x:Class="Playground.Templates.UnifiedTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Playground.Templates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:Playground.Models"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid VerticalAlignment="Top" Padding="{x:Bind Padding}" BorderBrush="{x:Bind BorderBrush}"
+          BorderThickness="{x:Bind BorderThickness}" Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2">
+            <Border x:Name="FollowPanel" x:DeferLoadStrategy="Lazy" Background="OrangeRed">
+                <TextBlock Text="Follow Item" Foreground="White" Padding="4" />
+            </Border>
+
+            <Border x:Name="LikePanel" x:DeferLoadStrategy="Lazy" Background="ForestGreen">
+                <TextBlock Text="Like Item" Foreground="White" Padding="4" />
+            </Border>
+        </StackPanel>
+
+        <local:BaseTemplate Grid.Row="1" Grid.Column="0" Data="{x:Bind Data.Base}" Margin="4" />
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="8"
+            Content="{x:Bind Data.Base, Mode=OneWay}">
+            <Button.ContentTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <local:BaseTemplate Data="{Binding}" />
+                        <TextBlock Text="This button do nothing!" Foreground="DodgerBlue" FontSize="10" />
+                    </StackPanel>
+                </DataTemplate>
+            </Button.ContentTemplate>
+        </Button>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="SlateGray">
+
+            <ToggleButton x:Name="FollowButton" x:DeferLoadStrategy="Lazy" Background="OrangeRed" IsChecked="{x:Bind Data.FollowInfo.IsFollowed, Mode=OneWay}" Width="100"
+                          Tapped="FollowButton_Tapped">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Follow (" Foreground="WhiteSmoke" />
+                    <RichTextBlock IsTextSelectionEnabled="False">
+                        <Paragraph>
+                            <Run Text="{x:Bind Data.FollowInfo.FollowCount, Mode=OneWay}" Foreground="WhiteSmoke" />
+                        </Paragraph>
+                    </RichTextBlock>
+                    <TextBlock Text=")" Foreground="WhiteSmoke" />
+                </StackPanel>
+            </ToggleButton>
+
+            <ToggleButton x:Name="LikeButton" x:DeferLoadStrategy="Lazy" Background="ForestGreen" IsChecked="{x:Bind Data.LikeInfo.IsLiked, Mode=OneWay}" Width="100"
+                          Tapped="LikeButton_Tapped">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Like (" Foreground="WhiteSmoke" />
+                    <RichTextBlock IsTextSelectionEnabled="False">
+                        <Paragraph>
+                            <Run Text="{x:Bind Data.LikeInfo.LikeCount, Mode=OneWay}" Foreground="WhiteSmoke" />
+                        </Paragraph>
+                    </RichTextBlock>
+                    <TextBlock Text=")" Foreground="WhiteSmoke" />
+                </StackPanel>
+            </ToggleButton>
+            
+        </StackPanel>
+
+    </Grid>
+    
+</UserControl>
